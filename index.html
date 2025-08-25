@@ -1,13 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+    <title>Pokedex</title>
     <link rel="stylesheet" href="./styles/style.css">
     <script defer src="./scripts/main.js"></script>
 </head>
+
+<title>Mini Pokédex</title>
+
 <body>
-    
+    <main class="container">
+        <h1>Mini Pokédex</h1>
+
+
+        <form id="searchForm" class="row">
+            <input id="query" type="text" placeholder="Name... (e.g. pikachu)" required />
+            <button type="submit">Search</button>
+        </form>
+
+        <div id="status" class="status"></div>
+
+
+        <section id="card" class="hidden" role="region" aria-label="Pokémon details">
+            <div class="sprite-wrap">
+                <img id="sprite" alt="" />
+            </div>
+            <div class="info">
+                <h2 id="name"></h2>
+                <p id="types"></p>
+                <details>
+                    <summary>Base stats</summary>
+                    <ul id="stats"></ul>
+                </details>
+                <details>
+                    <summary>Abilities</summary>
+                    <ul id="abilities"></ul>
+                </details>
+            </div>
+        </section>
+
+
+        <section aria-label="Pokémon gallery">
+            <div class="row">
+                <button id="pagePrev" disabled>← Prev Page</button>
+                <button id="pageNext">Next Page →</button>
+            </div>
+            <ul id="gallery" class="gallery"></ul>
+        </section>
+    </main>
+
+
 </body>
+
 </html>

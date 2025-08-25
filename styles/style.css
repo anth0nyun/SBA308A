@@ -1,7 +1,23 @@
-html, body{
-padding: 0;
-margin: 0;
-box-sizing: border-box;
-height: 100%;
-background-color:aqua
+html, body {
+    margin: 0;
+    padding: 0;
+    height: 100%;
+    box-sizing: border-box;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-family: system-ui, Arial, sans-serif;
 }
+
+button {
+    cursor: pointer;
+}
+
+button:disabled {
+    cursor: not-allowed;
+}
+
+.hidden {
+    display: none;
+}
+
