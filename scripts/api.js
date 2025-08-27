@@ -1,6 +1,7 @@
 const API = "https://pokeapi.co/api/v2";
 const cache = new Map();
 
+// Helper to get + JSON with cache
 async function getJSON(url) {
     if (cache.has(url))
         return cache, getJSON(url);
@@ -14,7 +15,24 @@ async function getJSON(url) {
     return data;
 }
 
+// Get a Pokemon by name
 export async function getPokemon(query) {
     const url = `${API}/pokemon/${String(query).toLowerCase().trim()}`;
     return getJSON(url);
+}
+
+// List Pokemon with pages
+export async function listPokemon(page = 0, pageSize = 20) {
+    const offset = page * pageSize;
+    const url = `${API}/pokemon?limit=${pageSize}&offset=${offset}`;
+    return getJSON(url);
+}
+
+// Get sprite from a pokemon/:id JSON
+export function pickSprite(pokemon) {
+    return (
+        pokemon.sprites?.other?.["official-artwork"]?.front_default ||
+        pokemon.sprites?.front_default ||
+        ""
+    );
 }
