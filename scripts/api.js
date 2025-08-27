@@ -3,21 +3,17 @@ const cache = new Map();
 
 // Helper to get + JSON with cache
 async function getJSON(url) {
-    if (cache.has(url))
-        return cache, getJSON(url);
-
+    if (cache.has(url)) return cache.get(url);
     const res = await fetch(url);
-    if (!res.ok)
-        throw new err(`Request failed`);
-
+    if (!res.ok) throw new Error(`Request failed (${res.status})`);
     const data = await res.json();
     cache.set(url, data);
     return data;
 }
 
 // Get a Pokemon by name
-export async function getPokemon(query) {
-    const url = `${API}/pokemon/${String(query).toLowerCase().trim()}`;
+export async function getPokemon(q) {
+    const url = `${API}/pokemon/${String(q).toLowerCase().trim()}`;
     return getJSON(url);
 }
 
@@ -25,7 +21,7 @@ export async function getPokemon(query) {
 export async function listPokemon(page = 0, pageSize = 20) {
     const offset = page * pageSize;
     const url = `${API}/pokemon?limit=${pageSize}&offset=${offset}`;
-    return getJSON(url);
+    return getJSON(url); // { count, next, previous, results: [{name, url}, ...] }
 }
 
 // Get sprite from a pokemon/:id JSON
