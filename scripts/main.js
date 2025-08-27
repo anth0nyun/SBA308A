@@ -13,7 +13,7 @@ const pageNext = document.getElementById("pageNext");
 // Variables
 let currentId = null;
 let page = 0;
-const pageSize = 12;
+const pageSize = 15;
 
 // Load and render a single Pokemon by name
 async function loadPokemon(q) {
