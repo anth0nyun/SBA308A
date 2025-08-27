@@ -50,10 +50,38 @@ async function loadPage(p = 0) {
                 return { id, name: r.name, sprite: pickSprite(full) || full.sprites.front_default || "" };
             })
         )
-    }}
 
-renderGallery({
-    root: galleryEl,
-    list: items,
-    onPick: (id) => loadPokemon(id),
+        renderGallery({
+            root: galleryEl,
+            list: items,
+            onPick: (id) => loadPokemon(id),
+        });
+
+        // Enable/disable page buttons
+        page = p;
+        pagePrev.disabled = page <= 0;
+        pageNext.disabled = (p + 1) * pageSize >= list.count;
+
+        setText(statusEl, "");
+    } catch (err) {
+        setText(statusEl, err.message || "Error loading page.");
+    }
+}
+
+// Events
+form.addEventListener("submit", (e) => {
+    e.preventDefault();
+    const q = queryInput.value.trim();
+    if (q) loadPokemon(q);
 });
+
+pagePrev.addEventListener("click", () => {
+    if (page > 0) loadPage(page - 1);
+});
+pageNext.addEventListener("click", () => {
+    loadPage(page + 1);
+});
+
+// // Initial minimal load
+// loadPage(0);
+// loadPokemon("pikachu");
