@@ -14,3 +14,23 @@ const pageNext = document.getElementById("pageNext");
 let currentId = null;
 let page = 0;
 const pageSize = 12;
+
+// Load and render a single Pokemon by name
+async function loadPokemon(q) {
+    try {
+        setText(statusEl, "Loading…");
+        hide(cardEl);
+
+        const data = await getPokemon(q);
+        // attach sprite
+        data.__sprite = pickSprite(data);
+
+        renderCard({ root: cardEl, data });
+        show(cardEl);
+        setText(statusEl, "");
+        currentId = data.id;
+    } catch (err) {
+        setText(statusEl, err.message || "Error loading Pokemon.");
+        hide(cardEl);
+    }
+}
