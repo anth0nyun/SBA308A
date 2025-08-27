@@ -34,3 +34,26 @@ async function loadPokemon(q) {
         hide(cardEl);
     }
 }
+
+/** Load a page of Pokémon for the gallery */
+async function loadPage(p = 0) {
+    try {
+        setText(statusEl, "Loading page…");
+
+        const list = await listPokemon(p, pageSize);
+
+        // Turn results into {id, name, sprite}
+        const items = await Promise.all(
+            list.results.map(async (r) => {
+                const id = Number(r.url.split("/").filter(Boolean).pop());
+                const full = await getPokemon(id);
+                return { id, name: r.name, sprite: pickSprite(full) || full.sprites.front_default || "" };
+            })
+        )
+    }}
+
+renderGallery({
+    root: galleryEl,
+    list: items,
+    onPick: (id) => loadPokemon(id),
+});
