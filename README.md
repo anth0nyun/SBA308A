@@ -52,5 +52,7 @@
 - Team builder: Pick 6 Pokémon, show total stats and type weaknesses.
 - Evolution chain: Show “evolves from → evolves to” with small sprites.
 
+### Reflection 
+
 
 
