@@ -21,7 +21,7 @@ export async function getPokemon(q) {
 export async function listPokemon(page = 0, pageSize = 20) {
     const offset = page * pageSize;
     const url = `${API}/pokemon?limit=${pageSize}&offset=${offset}`;
-    return getJSON(url); 
+    return getJSON(url);
 }
 
 // Get sprite from a pokemon/:id JSON

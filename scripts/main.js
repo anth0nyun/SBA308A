@@ -35,7 +35,7 @@ async function loadPokemon(q) {
     }
 }
 
-/** Load a page of Pokémon for the gallery */
+// Load a page of Pokémon for the gallery //
 async function loadPage(p = 0) {
     try {
         setText(statusEl, "Loading page…");
@@ -82,6 +82,3 @@ pageNext.addEventListener("click", () => {
     loadPage(page + 1);
 });
 
-// // Initial minimal load
-// loadPage(0);
-// loadPokemon("pikachu");
