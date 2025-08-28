@@ -162,7 +162,7 @@ input[type="text"] {
     justify-content: center;
     padding: 8px;
     margin-top: 12px;
-    background: rgba(255, 255, 255, .9);
+    background-color: rgb(203, 195, 195);
     backdrop-filter: blur(4px);
     border: 1px solid #e5e7eb;
     border-radius: 999px;
